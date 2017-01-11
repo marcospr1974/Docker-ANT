@@ -3,5 +3,5 @@ docker run -d \
   --name qvlnag00 \
   -v /opt/docker/qvlnag00/etc/nagios:/etc/nagios \
   -v /opt/docker/qvlnag00/etc/apache2:/etc/apache2 \
-  -p 8082:80 \
+  -p 8083:80 \
   marcospr1974/alpine-nagios

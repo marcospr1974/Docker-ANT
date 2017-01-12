@@ -6,12 +6,24 @@ ENV http_proxy=http://10.10.4.1:8080
 
 COPY repositories /etc/apk/repositories
 COPY haproxy.cfg /etc/haproxy/
+COPY start.sh /start.sh
+
+ENV UCARP_INTERFACE eth0
+ENV UCARP_SOURCEADDRESS 172.17.0.18
+ENV UCARP_VIRTUALADDRESS 172.17.0.100
+ENV UCARP_VIRTUALPREFIX 24
+ENV UCARP_VHID 123
+ENV UCARP_PASS "marcos74"
+ENV UCARP_UPSCRIPT /etc/ucarp/vip-up-default.sh
+ENV UCARP_DOWNSCRIPT /etc/ucarp/vip-down-default.sh
+ENV UCARP_OPTS "--shutdown"
 
 RUN apk update && apk upgrade 
-RUN apk add alpine-base bash vim haproxy && rm -rf /var/cache/apk/*
+RUN apk add alpine-base bash vim haproxy ucarp && rm -rf /var/cache/apk/*
 
 EXPOSE 80
 
-VOLUME /etc/haproxy
+VOLUME ["/etc/haproxy", "/etc/ucarp"]
 
-CMD ["haproxy","-d","-f","/etc/haproxy/haproxy.cfg"]
+#CMD ["haproxy","-d","-f","/etc/haproxy/haproxy.cfg"]
+CMD ["./start.sh"]

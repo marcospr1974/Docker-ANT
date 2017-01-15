@@ -4,6 +4,6 @@ docker run -d \
   --link qvlnag00 \
   --hostname qvlwaf00 \
   --name qvlwaf00 \
-  -p 8081:80 \
-  -p 8088:443 \
+  -p 8084:80 \
+  -p 8085:443 \
   marcospr1974/alpine-waf

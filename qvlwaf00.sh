@@ -4,6 +4,6 @@ docker run -d \
   --link qvlnag00 \
   --hostname qvlwaf00 \
   --name qvlwaf00 \
+  -v /opt/docker/qvlwaf00/var/www/localhost/htdocs:/var/www/localhost/htdocs \
   -p 8084:80 \
-  -p 8085:443 \
   marcospr1974/alpine-waf

@@ -67,24 +67,30 @@
     #
     # This should be changed to whatever you set DocumentRoot to.
     #
+    <Location "/nagios">
+        Options Indexes FollowSymLinks
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} qvlnag00
+        RewriteRule   (.*) https://qvlwaf00/nagios [R]
+        Order allow,deny
+        Allow from all
+    </Location>
+#
+    <Location "/web">
+        Options Indexes FollowSymLinks
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} qvlweb00
+        RewriteRule   (.*) https://qvlwaf00/web [R]
+        Order allow,deny
+        Allow from all
+    </Location>
 
-<Location /nagios/>
-        ProxyPass http://qvlnag00/nagios/
-        ProxyPassReverse http://qvlnag00/nagios/
-        #ProxyPassReverseCookiePath /nagios /
-</Location>
-
-<Location /web/>
-        ProxyPass http://qvlweb00/
-        ProxyPassReverse http://qvlweb00/
-        ProxyPassReverseCookiePath /web /
-</Location>
-
-<Location /joomla/>
-        ProxyPass http://qvljoo00/
-        ProxyPassReverse http://qvljoo00/
-        ProxyPassReverseCookiePath /joomla /
-</Location>
-
-
+    <Location "/joomla">
+        Options Indexes FollowSymLinks
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} qvlweb00
+        RewriteRule   (.*) https://qvlwaf00/joomla [R]
+        Order allow,deny
+        Allow from all
+    </Location>
 </VirtualHost>

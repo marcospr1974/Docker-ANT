@@ -3,5 +3,5 @@ docker run -d \
   --hostname qvlweb00 \
   --name qvlweb00 \
   -v /opt/docker/qvlweb00/var/www/localhost/htdocs:/var/www/localhost/htdocs \
-  -p 8084:80 \
+  -p 8088:80 \
   marcospr1974/alpine-apache2
